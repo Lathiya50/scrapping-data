@@ -1,13 +1,20 @@
 version: '3.8'
 
 services:
-    frontend:
-    build: ./frontend
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
     container_name: synthetic_frontend_ts
     ports:
       - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./frontend/.env
     networks:
       - synthetic_net
+    restart: unless-stopped
 
 networks:
   synthetic_net:
