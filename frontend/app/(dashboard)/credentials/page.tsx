@@ -112,26 +112,70 @@ async function UserCredentials() {
         const TypeIcon = typeInfo.icon;
 
         return (
-          <Card
-            key={credential.id}
-            className="w-full p-4 flex justify-between items-center"
-          >
-            <div className="flex gap-3 items-center">
-              <div className="rounded-full bg-primary/10 w-10 h-10 flex items-center justify-center">
-                <TypeIcon size={20} className="stroke-primary" />
-              </div>
-              <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-2">
-                  <p className="font-semibold">{credential.name}</p>
-                  <Badge
-                    variant="secondary"
-                    className={`text-xs ${typeInfo.color}`}
-                  >
-                    {typeInfo.label}
-                  </Badge>
+          <>
+            {/* Large / Medium Screen Layout */}
+            <Card
+              key={credential.id}
+              className="w-full p-4 flex justify-between items-center hidden md:flex"
+            >
+
+              <div className="flex  gap-3 items-center ">
+                <div className="rounded-full bg-primary/10 w-10 h-10 flex items-center justify-center">
+                  <TypeIcon size={20} className="stroke-primary" />
                 </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <span>Created {createdAt}</span>
+                <div className="flex flex-col gap-1">
+                  <div className="flex items-center gap-2">
+                    <p className="font-semibold">{credential.name}</p>
+                    <Badge
+                      variant="secondary"
+                      className={`text-xs ${typeInfo.color}`}
+                    >
+                      {typeInfo.label}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span>Created {createdAt}</span>
+                    {credential.description && (
+                      <>
+                        <span>•</span>
+                        <span>{credential.description}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <DeleteCredentialDialog name={credential.name} />
+            </Card>
+
+            {/* Large / Medium Screen Layout */}
+            <Card
+              key={credential.id}
+              className="w-full p-4 flex justify-between items-center  md:hidden"
+            >
+              <div className="flex flex-col gap-3 items-center w-full">
+                <div className="flex gap-3 items-center w-full">
+                  <div className="rounded-full bg-primary/10 w-10 h-10 flex items-center justify-center">
+                    <TypeIcon size={20} className="stroke-primary" />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <p className="font-semibold">{credential.name}</p>
+                      <Badge
+                        variant="secondary"
+                        className={`text-xs ${typeInfo.color}`}
+                      >
+                        {typeInfo.label}
+                      </Badge>
+                    </div>
+                    <span className="text-sm ">Created {createdAt}</span>
+                  </div>
+                  <div className="ml-auto">
+                    <DeleteCredentialDialog name={credential.name} />
+                  </div>
+
+                </div>
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
+
                   {credential.description && (
                     <>
                       <span>•</span>
@@ -140,9 +184,9 @@ async function UserCredentials() {
                   )}
                 </div>
               </div>
-            </div>
-            <DeleteCredentialDialog name={credential.name} />
-          </Card>
+            </Card>
+          </>
+
         );
       })}
     </div>

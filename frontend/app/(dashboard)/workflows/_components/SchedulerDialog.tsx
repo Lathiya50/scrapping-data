@@ -157,8 +157,8 @@ export default function SchedulerDialog(props: {
           )}
           {!workflowHasSchedule && (
             <div className="flex items-center gap-1">
-              <TriangleAlertIcon className="size-3" />
-              Set schedule
+              {/* <TriangleAlertIcon className="size-3" />
+              Set schedule */}
             </div>
           )}
         </Button>

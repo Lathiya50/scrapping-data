@@ -90,7 +90,7 @@ function WorkflowCard(props: WorkflowCardProps) {
             />
           </div>
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1 sm:space-x-2">
           {!isDraft && <RunBtn workflowId={workflow.id} />}
           <Link
             href={`/workflow/editor/${workflow.id}`}
@@ -182,7 +182,7 @@ function ScheduleSection({
         cron={cron}
         key={`${cron}-${workflowId}`}
       />
-      <MoveRightIcon className="h-4 w-4 text-muted-foreground" />
+      {/* <MoveRightIcon className="h-4 w-4 text-muted-foreground" /> */}
       <TooltipWrapper content="Credit consumption for full run">
         <div className="flex items-center gap-3">
           <Badge
@@ -210,12 +210,12 @@ function LastRunDetails({ workflow }: { workflow: Workflow }) {
   const nextScheduleUTC =
     nextRunAt && formatInTimeZone(nextRunAt, "UTC", "HH:mm");
   return (
-    <div className="bg-primary/5 px-4 py-1 flex justify-between items-center text-muted-foreground">
+    <div className="bg-primary/5 px-4 py-1 flex justify-between items-center text-muted-foreground ">
       <div className="flex items-center text-sm gap-2">
         {lastRunAt && (
           <Link
             href={`workflow/runs/${workflow.id}/${lastRunId}`}
-            className="flex items-center text-sm gap-2 group"
+            className="flex items-center text-sm gap-2 group "
           >
             <span>Last run:</span>
             <ExecutionStatusIndicator
